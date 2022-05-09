@@ -1,6 +1,8 @@
 name: CI & CD
 
-on: [push]
+on:
+  push:
+    branches: [main]
 
 jobs:
   tests:
@@ -71,7 +73,6 @@ jobs:
           echo DB_PORT=${{ secrets.DB_PORT }} >> .env
           sudo docker-compose up -d
           sudo docker-compose exec web python manage.py migrate
-#         sudo docker-compose exec web python manage.py createsuperuser
           sudo docker-compose exec web python manage.py collectstatic --no-input
 
   send_message:
