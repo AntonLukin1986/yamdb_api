@@ -1,0 +1,6 @@
+id,username,email,role,bio,first_name,last_name,password,is_superuser,is_staff,is_active,date_joined
+100,bingobongo,bingobongo@yamdb.fake,user,играет в кино,adam,sendler,asd123456,0,0,1,2020-01-13T23:20:02.422Z
+101,capt_obvious,capt_obvious@yamdb.fake,admin,убил дракона,bilbo,beggins,asd123456,1,1,1,2019-01-13T23:20:02.422Z
+102,faust,faust@yamdb.fake,user,просто качок,arnold,shwarznegger,asd123456,0,0,1,2020-02-13T23:20:02.422Z
+103,reviewer,reviewer@yamdb.fake,user,основатель автомобильной комнаии FORD,ghenry,ford,asd123456,0,0,1,2021-05-13T23:20:02.422Z
+104,angry,angry@yamdb.fake,moderator,друг чука,gekel,berelfin,asd123456,0,1,1,2022-01-13T23:20:02.422Z
