@@ -44,7 +44,6 @@ jobs:
     - name: Push to Docker Hub
       uses: docker/build-push-action@v2 
       with:
-        build: api_yamdb/
         push: true
         tags: anton1986lukin/infra_web:latest
 
