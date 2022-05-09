@@ -8,8 +8,7 @@ services:
     env_file:
       - ./.env
   web:
-    # предварительная сборка образа по Докерфайлу -> build: ../api_yamdb
-    image: anton1986lukin/infra_web:v1.0
+    build: ../api_yamdb
     restart: always
     volumes:
       - static_value:/app/static/
