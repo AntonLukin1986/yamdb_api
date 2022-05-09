@@ -9,7 +9,6 @@ services:
       - ./.env
 
   web:
-    build: ../api_yamdb/
     image: anton1986lukin/infra_web:v1.0
     restart: always
     volumes:
