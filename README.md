@@ -40,6 +40,7 @@ POSTGRES_USER=postgres # логин для подключения к базе д
 POSTGRES_PASSWORD=postgres # пароль для подключения к БД (установите свой)
 DB_HOST=db # название сервиса (контейнера)
 DB_PORT=5432 # порт для подключения к БД
+ALLOWED_HOSTS=localhost 51.250.99.48 (добавьте необходимые хосты через пробел)
 ```
 
 Выполнить команду:
@@ -52,24 +53,8 @@ sudo docker-compose up -d
 
 ```
 sudo docker-compose exec web python manage.py migrate
-```
-
-```
 sudo docker-compose exec web python manage.py createsuperuser
-```
-
-```
 sudo docker-compose exec web python manage.py collectstatic --no-input
-```
-
-После этого проект будет доступен по адресу http://localhost/
-
-### Описание API
-
-Для ознакомления с API следует открыть ReDoc в браузере:
-
-```
-http://127.0.0.1/redoc/
 ```
 
 #### Заполнение базы данных из файлов *.csv
@@ -97,7 +82,7 @@ users.csv
 Для заполнения БД выполните команду:
 
 ```
-python manage.py csv_to_base
+sudo docker-compose exec web python manage.py csv_to_base
 ```
 
 Сообщение 'Успешно! Данные из *.csv теперь в базе.' означает, что данные перенесены успешно.
@@ -111,3 +96,7 @@ _Абрамсон Арсений_ [ArS181](https://github.com/ArS181)
 _Антон Лукин_ [AntonLukin1986](https://github.com/AntonLukin1986)
 
 _Эльвир Давлетгареев_ [elvir906](https://github.com/elvir906)
+
+Ознакомиться с проектом можно по ссылкам:
+[администрирование](http://51.250.99.48/admin/)
+[документация](http://51.250.99.48/redoc/)
