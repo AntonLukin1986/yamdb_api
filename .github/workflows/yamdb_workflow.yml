@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   tests:
+    name: PEP8 and pytest
     runs-on: ubuntu-latest
     steps:
     - name: Check out the repo
@@ -19,6 +20,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pep8-naming flake8-broken-line flake8-return
         pip install -r api_yamdb/requirements.txt
+
     - name: Test with flake8 and pytest
       run: |
         python -m flake8
@@ -46,13 +48,14 @@ jobs:
       with:
         context: api_yamdb/
         push: true
-        tags: anton1986lukin/infra_web:latest
+        tags: anton1986lukin/infra_web
 
   deploy:
+    name: Deploy to server
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
     steps:
-    - name: executing remote ssh commands to deploy
+    - name: Executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
@@ -61,23 +64,23 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           sudo docker-compose stop
-          sudo docker-compose rm web
-          touch .env
-          echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
+          sudo docker rmi anton1986lukin/infra_web
+          echo DB_ENGINE=${{ secrets.DB_ENGINE }} > .env
           echo DB_NAME=${{ secrets.DB_NAME }} >> .env
           echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
           echo DB_HOST=${{ secrets.DB_HOST }} >> .env
           echo DB_PORT=${{ secrets.DB_PORT }} >> .env
-          sudo docker-compose up -d
+          sudo docker-compose up -d --build
 
   send_message:
+    name: Send confirmation message to Telegramm
     runs-on: ubuntu-latest
     needs: deploy
     steps:
-    - name: send message
+    - name: Send message
       uses: appleboy/telegram-action@master
       with:
         to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
+        token: ${{ secrets.AWESOM_O_TOKEN }}
         message: ${{ github.workflow }} успешно выполнен!
