@@ -9,7 +9,7 @@ services:
       - ./.env
 
   web:
-    image: anton1986lukin/infra_web:v1.0
+    image: anton1986lukin/infra_web:latest
     restart: always
     volumes:
       - static_value:/app/static/
