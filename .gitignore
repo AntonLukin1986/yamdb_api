@@ -145,4 +145,10 @@ dmypy.json
 
 .mypy_cache
 
+# папки со статикой и медиа
+media/
+api_yamdb/static/
 
+
+api_yamdb/sent_emails/
+api_yamdb/templates/
