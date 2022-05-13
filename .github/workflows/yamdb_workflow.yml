@@ -29,7 +29,6 @@ jobs:
         pytest
         mv api_yamdb/api_yamdb/settings.py api_yamdb/api_yamdb/settings_sqlite.py
         mv api_yamdb/api_yamdb/settings_temp.py api_yamdb/api_yamdb/settings.py
-        pytest
 
   build_and_push_to_docker_hub:
     name: Push Docker image to Docker Hub
