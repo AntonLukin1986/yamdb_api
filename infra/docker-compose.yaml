@@ -4,6 +4,7 @@ services:
   db:
     image: postgres:13.0-alpine
     volumes:
+      # создаётся том с автоматическим именем (хеш)
       - /var/lib/postgresql/data/
     env_file:
       - ./.env
@@ -24,7 +25,9 @@ services:
     ports:
       - "80:80"
     volumes:
+      # синхронизируется с локальным файлом
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      # синхронизируется с томом
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     depends_on:
